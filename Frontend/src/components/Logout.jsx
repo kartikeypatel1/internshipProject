@@ -3,22 +3,18 @@ import { useAuth } from "../context/AuthProvider";
 import toast from "react-hot-toast";
 
 function Logout() {
-  const [authUser, setAuthUser] = useAuth();
+  const [, setAuthUser] = useAuth();
   const handleLogout = () => {
     try {
-      setAuthUser({
-        ...authUser,
-        user: null,
-      });
+      setAuthUser(null);
       localStorage.removeItem("Users");
-      toast.success("Logout successfully");
+      toast.success("Logged out successfully!");
 
       setTimeout(() => {
         window.location.reload();
-      }, 3000);
+      }, 800);
     } catch (error) {
       toast.error("Error: " + error);
-      setTimeout(() => {}, 2000);
     }
   };
   return (
